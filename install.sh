@@ -254,7 +254,7 @@ WantedBy=multi-user.target
 
   
   ##Expand file system to get entire disk at boot
-  sudo cp ~/resizefs_local_premount_vda /etc/initramfs-tools/scripts/local-premount/resizefs
+  #sudo cp ~/resizefs_local_premount_vda /etc/initramfs-tools/scripts/local-premount/resizefs
   sudo cp ~/resizefs_local_premount /etc/initramfs-tools/scripts/local-premount/resizefs
   sudo cp ~/resizefs_hooks /etc/initramfs-tools/hooks/resizefs
   sudo chmod 755 /etc/initramfs-tools/scripts/local-premount/resizefs
