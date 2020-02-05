@@ -86,7 +86,8 @@ install(){
   }" > /webodm/webodm/local_settings.py
   
   pip install -r requirements.txt
-
+  pip3 install opencv-python rasterio geojson
+  
   # Build assets
   sudo npm install -g webpack
   sudo npm install -g webpack-cli
