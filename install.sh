@@ -196,9 +196,7 @@ WantedBy=multi-user.target
 " > /clusterodm/clusterodm.service
   
   #elevation map depend
-  pip3 install opencv-python
-  pip3 install rasterio
-  pip3 install geojson
+  pip3 install opencv-python rasterio geojson
   
   ## dep and micmac
   sudo -H pip install utm
