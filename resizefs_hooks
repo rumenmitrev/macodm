@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+PREREQS=""
+
+prereqs() { echo "$PREREQS"; }
+
+case $1 in
+    prereqs)
+        prereqs
+        exit 0
+    ;;
+esac
+
+. /usr/share/initramfs-tools/hook-functions
+
+copy_exec /sbin/fsck.ext4
+copy_exec /sbin/resize2fs
+copy_exec /sbin/fdisk
+copy_exec /sbin/partprobe
+exit 0

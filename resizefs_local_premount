@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -e
+
+PREREQS=""
+
+prereqs() { echo "$PREREQS"; }
+
+case "$1" in
+    prereqs)
+        prereqs
+        exit 0
+    ;;
+esac
+cat <<EOF | /sbin/fdisk /dev/nvme0n1
+d
+n
+p
+1
+
+
+w
+EOF
+/sbin/partprobe /dev/nvme0n1
+/sbin/fsck.ext4 -yf /dev/nvme0n1p1
+/sbin/resize2fs /dev/nvme0n1p1
+/sbin/fsck.ext4 -yf /dev/nvme0n1p1
