@@ -33,8 +33,8 @@ install(){
   sudo git clone --depth 1 https://github.com/OpenDroneMap/node-OpenDroneMap.git www
   sudo git clone --depth 1 https://github.com/OpenDroneMap/WebODM.git webodm
   sudo git clone https://github.com/OpenDroneMap/ClusterODM clusterodm
-  #sudo git clone https://github.com/dronemapper-io/NodeMICMAC.git micmac
-  sudo git clone https://github.com/rumenmitrev/NodeMICMAC.git micmac
+  sudo git clone https://github.com/dronemapper-io/NodeMICMAC.git micmac
+  #sudo git clone https://github.com/rumenmitrev/NodeMICMAC.git micmac
   #micmac dep
   sudo mkdir /staging
   sudo mkdir /home/drnmppr-micmac
@@ -86,7 +86,7 @@ install(){
   }" > /webodm/webodm/local_settings.py
   
   pip install -r requirements.txt
-  pip3 install opencv-python rasterio geojson
+  #pip3 install opencv-python rasterio geojson
   
   # Build assets
   sudo npm install -g webpack
@@ -197,7 +197,7 @@ WantedBy=multi-user.target
 " > /clusterodm/clusterodm.service
   
   #elevation map depend
-  pip3 install opencv-python rasterio geojson
+  #pip3 install opencv-python rasterio geojson
   
   ## dep and micmac
   sudo -H pip install utm
@@ -253,12 +253,12 @@ WantedBy=multi-user.target
 
   
   ##Expand file system to get entire disk at boot
-  #sudo cp ~/resizefs_local_premount_vda /etc/initramfs-tools/scripts/local-premount/resizefs
-  sudo cp ~/resizefs_local_premount /etc/initramfs-tools/scripts/local-premount/resizefs
-  sudo cp ~/resizefs_hooks /etc/initramfs-tools/hooks/resizefs
-  sudo chmod 755 /etc/initramfs-tools/scripts/local-premount/resizefs
-  sudo chmod 755 /etc/initramfs-tools/hooks/resizefs
-  sudo update-initramfs -u
+  ##sudo cp ~/resizefs_local_premount_vda /etc/initramfs-tools/scripts/local-premount/resizefs
+  #sudo cp ~/resizefs_local_premount /etc/initramfs-tools/scripts/local-premount/resizefs
+  #sudo cp ~/resizefs_hooks /etc/initramfs-tools/hooks/resizefs
+  #sudo chmod 755 /etc/initramfs-tools/scripts/local-premount/resizefs
+  #sudo chmod 755 /etc/initramfs-tools/hooks/resizefs
+  #sudo update-initramfs -u
   
 
   #MICMAC docker
