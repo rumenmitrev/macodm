@@ -201,6 +201,7 @@ WantedBy=multi-user.target
   
   ## dep and micmac
   sudo -H pip install utm
+  pip install scikit-image
   cd /staging/LAStools/LASzip
   mkdir build
   cd build
