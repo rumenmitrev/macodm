@@ -5,8 +5,8 @@ install(){
   
   sudo apt update -y
   sudo apt upgrade -y
-  sudo apt install -y virtualenv curl python-setuptools nginx-core nginx build-essential gcc g++ cmake python3-dev python-virtualenv redis-server binutils libproj-dev grass-core git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-geojson python3-pip p7zip-full 
-  
+  sudo apt install -y virtualenv curl python-setuptools nginx-core nginx build-essential gcc g++ cmake python3-dev python-virtualenv redis-server binutils libproj-dev grass-core git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-geojson python3-pip p7zip-full python-matplotlib python-numpy python-pil python-scipy cython python-skimage
+
   cd ~
   sudo curl --silent --location https://deb.nodesource.com/setup_10.x | sudo bash -
   sudo apt install -y nodejs python-gdal
