@@ -6,7 +6,7 @@ import argparse
 import numpy as np
 from skimage.io import imread, imsave
 import PIL.Image
-PIL.Image.MAX_IMAGE_PIXELS = 41943040000000000
+PIL.Image.MAX_IMAGE_PIXELS = None
 
 def arrange_tiles(flist, args):
     tmp_inds = [os.path.splitext(f)[0].split('Tile_')[-1].split('_') for f in flist]
