@@ -5,7 +5,8 @@ from glob import glob
 import argparse
 import numpy as np
 from skimage.io import imread, imsave
-
+import PIL.Image
+PIL.Image.MAX_IMAGE_PIXELS = 419430400000000
 
 def arrange_tiles(flist, args):
     tmp_inds = [os.path.splitext(f)[0].split('Tile_')[-1].split('_') for f in flist]
@@ -22,8 +23,8 @@ def arrange_tiles(flist, args):
 def main():
     parser = argparse.ArgumentParser(description="Re-stitch images tiled by MicMac.",
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('-filename', action='store', type=str, default='Z_Num9_DeZoom1_STD-MALT',
-                        help="MicMac filename to tile [Z_Num9_DeZoom1_STD-MALT]")
+    parser.add_argument('-filename', action='store', type=str, default='Orthophotomosaic',
+                        help="MicMac filename to tile [Orthophotomosaic]")
     parser.add_argument('-imgdir', action='store', type=str, default='.',
                         help="Directory containing images [.]")
     args = parser.parse_args()
