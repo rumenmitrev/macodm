@@ -34,7 +34,7 @@ install(){
   sudo git clone --depth 1 https://github.com/OpenDroneMap/WebODM.git webodm
   sudo git clone https://github.com/OpenDroneMap/ClusterODM clusterodm
   #sudo git clone https://github.com/dronemapper-io/NodeMICMAC.git micmac
-  git clone https://github.com/rumenmitrev/macodm.git ~/macodm
+  #git clone https://github.com/rumenmitrev/macodm.git ~/macodm
   sudo git clone https://github.com/rumenmitrev/NodeMICMAC.git micmac
   #micmac dep
   sudo mkdir /staging
