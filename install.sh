@@ -287,6 +287,7 @@ WantedBy=multi-user.target
   
   deactivate
   sudo runuser -l odm -c "pip3 install --upgrade pip && pip3 install 'Cython>= 0.23.4' && pip3 install numpy && pip3 install 'scikit-image<0.15' && pip3 install opencv-python rasterio geojson"
+  sudo -H pip3 install --upgrade pip && pip3 install 'Cython>= 0.23.4' && pip3 install numpy && pip3 install 'scikit-image<0.15' && pip3 install opencv-python rasterio geojson
   sudo reboot
 }
 
