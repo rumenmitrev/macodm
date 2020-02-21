@@ -87,7 +87,6 @@ install(){
   }" > /webodm/webodm/local_settings.py
   
   pip install -r requirements.txt
-  #pip3 install opencv-python rasterio geojson
   
   # Build assets
   sudo npm install -g webpack
@@ -197,8 +196,6 @@ WantedBy=multi-user.target
 
 " > /clusterodm/clusterodm.service
   
-  #elevation map depend
-  #pip3 install opencv-python rasterio geojson
   
   ## dep and micmac
   sudo -H pip install utm
@@ -268,8 +265,9 @@ WantedBy=multi-user.target
   #sh get-docker.sh
   #sudo docker run -d -p 3002:3000 dronemapper/node-micmac
   #sudo sed -i '12a docker run -d -p 3002:3000 dronemapper/node-micmac' /etc/rc.local
-  
-  
+ 
+  pip3 install --upgrade pip && pip3 install 'Cython>= 0.23.4' && pip3 install numpy && pip3 install 'scikit-image<0.15' && pip3 install opencv-python rasterio geojson
+  echo vm.overcommit_memory = 1 | sudo tee -a /etc/sysctl.conf && sysctl -p 
   # Link services
   sudo systemctl enable /www/services/nodeodm.service
   sudo systemctl enable /webodm/service/webodm-nginx.service
