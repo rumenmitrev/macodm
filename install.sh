@@ -203,7 +203,7 @@ WantedBy=multi-user.target
   
   ## dep and micmac
   #sudo -H pip install utm
-  python -m  pip install utm
+  #python -m  pip install utm
   
   cd /staging/LAStools/LASzip
   mkdir build
@@ -294,6 +294,7 @@ WantedBy=multi-user.target
   python3 -m pip install --upgrade pip
   python -m pip install --user 'Cython>= 0.23.4' numpy 'scikit-image<0.15'  opencv-python rasterio geojson
   python3 -m pip install --user 'Cython>= 0.23.4' numpy 'scikit-image<0.15'  opencv-python rasterio geojson
+  python -m  pip install --user utm
 
   sudo reboot
 }
