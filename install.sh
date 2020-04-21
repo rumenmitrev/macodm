@@ -47,7 +47,10 @@ install(){
   #sudo chmod +x /code/configure_18_04.sh
   #sudo bash /code/configure_18_04.sh install
   sudo bash /code/configure.sh install
-  
+#--------------------------------------------------------------------------------------------------  
+  python -m pip install –upgrade pip
+  pip install --user -r /code/requirements.txt
+
   sudo ln -s /code/SuperBuild/install/bin/entwine /usr/bin/entwine
   sudo ln -s /code/SuperBuild/install/lib/libpdal_util.so.8 /usr/lib/libpdal_util.so.8
   sudo ln -s /code/SuperBuild/install/lib/libentwine.so.2 /usr/lib/libentwine.so.2
