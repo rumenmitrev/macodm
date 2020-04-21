@@ -89,8 +89,9 @@ install(){
       }
   }" > /webodm/webodm/local_settings.py
   
-  pip install -r requirements.txt
-  
+  #pip install -r requirements.txt
+  python -m  pip install -r requirements.txt
+
   # Build assets
   sudo npm install -g webpack
   sudo npm install -g webpack-cli
@@ -201,7 +202,9 @@ WantedBy=multi-user.target
   
   
   ## dep and micmac
-  sudo -H pip install utm
+  #sudo -H pip install utm
+  python -m  pip install utm
+  
   cd /staging/LAStools/LASzip
   mkdir build
   cd build
@@ -268,7 +271,7 @@ WantedBy=multi-user.target
   #sudo docker run -d -p 3002:3000 dronemapper/node-micmac
   #sudo sed -i '12a docker run -d -p 3002:3000 dronemapper/node-micmac' /etc/rc.local
  
-  echo vm.overcommit_memory = 1 | sudo tee -a /etc/sysctl.conf && sysctl -p 
+  echo vm.overcommit_memory = 1 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p 
   # Link services
   sudo systemctl enable /www/services/nodeodm.service
   sudo systemctl enable /webodm/service/webodm-nginx.service
@@ -288,8 +291,10 @@ WantedBy=multi-user.target
   
   
   deactivate
-  pip3 install --upgrade pip && pip3 install 'Cython>= 0.23.4' && pip3 install numpy && pip3 install 'scikit-image<0.15' && pip3 install opencv-python rasterio geojson
-  pip3 install --upgrade pip && pip3 install 'Cython>= 0.23.4' && pip3 install numpy && pip3 install 'scikit-image<0.15' && pip3 install opencv-python rasterio geojson
+  python3 -m pip install --upgrade pip
+  python -m pip install --user 'Cython>= 0.23.4' numpy 'scikit-image<0.15'  opencv-python rasterio geojson
+  python3 -m pip install --user 'Cython>= 0.23.4' numpy 'scikit-image<0.15'  opencv-python rasterio geojson
+
   sudo reboot
 }
 
