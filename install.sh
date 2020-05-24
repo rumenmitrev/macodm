@@ -4,8 +4,8 @@
   
   sudo apt update
   sudo apt upgrade
-  sudo apt install -y curl python-setuptools build-essential gcc g++ cmake binutils libproj-dev git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-pip
-
+  sudo apt install -y curl python-setuptools build-essential gcc g++ cmake binutils libproj-dev git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-pip python3-pip
+  python3 -m pip install --upgrade pip
   cd ~
   sudo curl --silent --location https://deb.nodesource.com/setup_10.x | sudo bash -
   sudo apt install -y nodejs python-gdal
@@ -28,7 +28,8 @@
   sudo git clone https://github.com/pierotofy/LAStools /staging/LAStools
   sudo git clone https://github.com/pierotofy/PotreeConverter /staging/PotreeConverter
   sudo chown $(whoami) -R /www /code /clusterodm /staging /micmac /home/drnmppr-micmac /webodm
- 
+  
+  python3 -m pip install --user 'Cython>= 0.23.4' numpy 'scikit-image<0.15'  opencv-python rasterio geojson
   pip install --upgrade pip
   pip install --user pytz
   python -m  pip install --user -r /code/requirements.txt
