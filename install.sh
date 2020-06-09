@@ -4,7 +4,7 @@
   
   sudo apt update
   sudo apt upgrade
-  sudo apt install -y curl python-setuptools build-essential gcc g++ cmake binutils libproj-dev git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-pip python3-pip
+  sudo apt install -y curl python-setuptools build-essential gcc g++ cmake binutils libproj-dev git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-pip python3-pip zip
   python3 -m pip install --upgrade pip
   cd ~
   sudo curl --silent --location https://deb.nodesource.com/setup_10.x | sudo bash -
