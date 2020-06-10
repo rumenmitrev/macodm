@@ -18,18 +18,18 @@
   #sudo git clone https://github.com/OpenDroneMap/WebODM --config core.autocrlf=input --depth 1 webodm
   sudo git clone --depth 1 https://github.com/OpenDroneMap/OpenDroneMap.git code
   sudo git clone --depth 1 https://github.com/OpenDroneMap/node-OpenDroneMap.git www
-  sudo git clone https://github.com/OpenDroneMap/ClusterODM clusterodm
+  #sudo git clone https://github.com/OpenDroneMap/ClusterODM clusterodm
   #sudo git clone https://github.com/dronemapper-io/NodeMICMAC.git micmac
-  sudo git clone https://github.com/rumenmitrev/NodeMICMAC.git micmac
+  #sudo git clone https://github.com/rumenmitrev/NodeMICMAC.git micmac
   #micmac dep
-  sudo mkdir /staging
-  sudo mkdir /home/drnmppr-micmac
-  sudo git clone https://github.com/micmacIGN/micmac.git /home/drnmppr-micmac
-  sudo git clone https://github.com/pierotofy/LAStools /staging/LAStools
-  sudo git clone https://github.com/pierotofy/PotreeConverter /staging/PotreeConverter
-  sudo chown $(whoami) -R /www /code /clusterodm /staging /micmac /home/drnmppr-micmac /webodm
+  #sudo mkdir /staging
+  #sudo mkdir /home/drnmppr-micmac
+  #sudo git clone https://github.com/micmacIGN/micmac.git /home/drnmppr-micmac
+  #sudo git clone https://github.com/pierotofy/LAStools /staging/LAStools
+  #sudo git clone https://github.com/pierotofy/PotreeConverter /staging/PotreeConverter
+  #sudo chown $(whoami) -R /www /code /clusterodm /staging /micmac /home/drnmppr-micmac /webodm
   
-  python3 -m pip install --user 'Cython>= 0.23.4' numpy 'scikit-image<0.15'  opencv-python rasterio geojson
+  #python3 -m pip install --user 'Cython>= 0.23.4' numpy 'scikit-image<0.15'  opencv-python rasterio geojson
   pip install --upgrade pip
   pip install --user pytz
   python -m  pip install --user -r /code/requirements.txt
@@ -45,50 +45,50 @@
   cd /www
   npm install
 
-  cd /clusterodm
-  npm install  
-  echo "
-[Unit]
-Description=Start ClusterODM Service
-
-[Service]
-Type=simple
-PIDFile=/run/clusterodm.pid
-User=odm
-Group=odm
-WorkingDirectory=/clusterodm
-ExecStart=/usr/bin/node index.js -p 3001 --odm_path /code
-ExecStop=/bin/kill -s QUIT $MAINPID
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-
-" > /clusterodm/clusterodm.service
+  #cd /clusterodm
+  #npm install  
+  #echo "
+#[Unit]
+#Description=Start ClusterODM Service
+#
+#[Service]
+#Type=simple
+#PIDFile=/run/clusterodm.pid
+#User=odm
+#Group=odm
+#WorkingDirectory=/clusterodm
+#ExecStart=/usr/bin/node index.js -p 3001 --odm_path /code
+#ExecStop=/bin/kill -s QUIT $MAINPID
+#Restart=always
+#
+#[Install]
+#WantedBy=multi-user.target
+#
+#" > /clusterodm/clusterodm.service
   
   
   ## dep and micmac
-  python -m  pip install --user utm
-  
-  cd /staging/LAStools/LASzip
-  mkdir build
-  cd build
-  cmake -DCMAKE_BUILD_TYPE=Release ..
-  make -j$CPUS
+#  python -m  pip install --user utm
+#  
+#  cd /staging/LAStools/LASzip
+#  mkdir build
+#  cd build
+#  cmake -DCMAKE_BUILD_TYPE=Release ..
+#  make -j$CPUS
   ## potreeeconvertor
-  cd /staging/PotreeConverter
-  mkdir build
-  cd build
-  cmake -DCMAKE_BUILD_TYPE=Release -DLASZIP_INCLUDE_DIRS=/staging/LAStools/LASzip/dll -DLASZIP_LIBRARY=/staging/LAStools/LASzip/build/src/liblaszip.a ..
-  make -j$CPUS && sudo make install
-  cd /micmac
-  npm install
+#  cd /staging/PotreeConverter
+#  mkdir build
+#  cd build
+#  cmake -DCMAKE_BUILD_TYPE=Release -DLASZIP_INCLUDE_DIRS=/staging/LAStools/LASzip/dll -DLASZIP_LIBRARY=/staging/LAStools/LASzip/build/src/liblaszip.a ..
+#  make -j$CPUS && sudo make install
+#  cd /micmac
+#  npm install
   #compile micmac
-  cd /home/drnmppr-micmac
-  mkdir build
-  cd build
-  cmake -DBUILD_POISSON=ON ../
-  make install -j$CPUS
+#  cd /home/drnmppr-micmac
+#  mkdir build
+#  cd build
+#  cmake -DBUILD_POISSON=ON ../
+#  make install -j$CPUS
   
  
   ##Expand file system to get entire disk at boot
@@ -100,26 +100,26 @@ WantedBy=multi-user.target
   
 
   #MICMAC docker
-  cd ~
-  curl -fsSL https://get.docker.com -o get-docker.sh
-  sudo sh get-docker.sh
-  sudo usermod -aG docker $(whoami)
-  sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  sudo chmod +x /usr/local/bin/docker-compose
-  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+#  cd ~
+#  curl -fsSL https://get.docker.com -o get-docker.sh
+#  sudo sh get-docker.sh
+#  sudo usermod -aG docker $(whoami)
+#  sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+#  sudo chmod +x /usr/local/bin/docker-compose
+#  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
   #sudo docker run -d -p 3002:3000 dronemapper/node-micmac
   #sudo sed -i '12a docker run -d -p 3002:3000 dronemapper/node-micmac' /etc/rc.local
  
   echo vm.overcommit_memory = 1 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p 
   # Link services
   sudo systemctl enable /www/services/nodeodm.service
-  sudo systemctl enable /clusterodm/clusterodm.service
-  sudo systemctl enable /micmac/micmac.service
+#  sudo systemctl enable /clusterodm/clusterodm.service
+#  sudo systemctl enable /micmac/micmac.service
   
   sudo service nodeodm start
-  sudo service clusterodm start
+#  sudo service clusterodm start
   #sudo service micmac start
-  sudo sed -i '$i'"$(echo '/webodm/webodm.sh --port 80 --detached --default-nodes 0 start')" /etc/rc.local
+#  sudo sed -i '$i'"$(echo '/webodm/webodm.sh --port 80 --detached --default-nodes 0 start')" /etc/rc.local
   # clena
   sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   sudo rm -rf /code/SuperBuild/build/opencv /code/SuperBuild/download /code/SuperBuild/src/ceres /code/SuperBuild/src/mvstexturing /code/SuperBuild/src/opencv /code/SuperBuild/src/opengv /code/SuperBuild/src/pcl /code/SuperBuild/src/pdal
