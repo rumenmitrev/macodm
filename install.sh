@@ -4,7 +4,7 @@
   
   sudo apt update
   sudo apt upgrade
-  sudo apt install -y curl python-setuptools build-essential gcc g++ cmake binutils libproj-dev git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-pip python3-pip zip
+  sudo apt install -y curl python-setuptools build-essential gcc g++ cmake binutils libproj-dev git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-pip python3-pip zip libpng-dev libfreetype6-dev python-pip
   python3 -m pip install --upgrade pip
   cd ~
   sudo curl --silent --location https://deb.nodesource.com/setup_10.x | sudo bash -
@@ -36,9 +36,9 @@
   sudo bash /code/configure.sh install
 
   sudo ln -s /code/SuperBuild/install/bin/entwine /usr/bin/entwine
-  sudo ln -s /code/SuperBuild/install/lib/libpdal_util.so.8 /usr/lib/libpdal_util.so.8
+  sudo ln -s /code/SuperBuild/install/lib/libpdal_util.so.12 /usr/lib/libpdal_util.so.12
   sudo ln -s /code/SuperBuild/install/lib/libentwine.so.2 /usr/lib/libentwine.so.2
-  sudo ln -s /code/SuperBuild/install/lib/libpdal_base.so.8 /usr/lib/libpdal_base.so.8
+  sudo ln -s /code/SuperBuild/install/lib/libpdal_base.so.12 /usr/lib/libpdal_base.so.12
   sudo ln -s /code/SuperBuild/install/bin/pdal /usr/bin/pdal	
   
   
