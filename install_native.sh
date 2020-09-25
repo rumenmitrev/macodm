@@ -48,7 +48,7 @@ install(){
   #sudo bash /code/configure_18_04.sh install
 
   pip install --upgrade pip
-  python -m  pip install --user -r /code/requirements.txt
+  python3 -m  pip install --user -r /code/requirements.txt
   sudo bash /code/configure.sh install
 
   sudo ln -s /code/SuperBuild/install/bin/entwine /usr/bin/entwine
