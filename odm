@@ -1,0 +1,35 @@
+sudo apt install pkg-config libpng-dev libfreetype6-dev python-pip
+
+
+sudo apt install xfce4 xfce4-goodies
+sudo apt install tightvncserver
+
+mv ~/.vnc/xstartup ~/.vnc/xstartup.bak
+
+vi ~/.vnc/xstartup
+#!/bin/bash
+xrdb $HOME/.Xresources
+startxfce4 &
+
+
+sudo vi /etc/systemd/system/webodm.service
+
+[Unit]
+Description=Start WEB-ODM Service Container
+
+[Service]
+Type=simple
+PIDFile=/run/webodm.pid
+User=odm
+Group=odm
+WorkingDirectory=/webodm
+ExecStart=/webodm/webodm.sh --port 80 --detached --default-nodes 0 start
+ExecStop=/bin/kill -s QUIT $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+python -m pip install --user appsettings
