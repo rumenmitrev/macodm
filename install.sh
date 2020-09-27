@@ -4,7 +4,7 @@
   
   sudo apt update
   sudo apt upgrade
-  sudo apt install -y curl python-setuptools build-essential gcc g++ cmake binutils libproj-dev git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-pip python3-pip zip libpng-dev libfreetype6-dev python-pip
+  sudo apt install -y qt5-default qttools5-dev-tools curl python-setuptools build-essential gcc g++ cmake binutils libproj-dev git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-pip python3-pip zip libpng-dev libfreetype6-dev python-pip
   python3 -m pip install --upgrade pip
   cd ~
   sudo curl --silent --location https://deb.nodesource.com/setup_10.x | sudo bash -
@@ -87,7 +87,7 @@ WantedBy=multi-user.target
   cd /home/drnmppr-micmac
   mkdir build
   cd build
-  cmake -DBUILD_POISSON=ON ../
+  cmake -DBUILD_POISSON=ON -DWITH_QT5=1 -DWITH_CPP11=1 ../
   make install -j$CPUS
   
  
