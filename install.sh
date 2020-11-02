@@ -71,6 +71,7 @@ WantedBy=multi-user.target
   
   ## dep and micmac
   python -m  pip install --user utm
+  python -m  pip install --user appsettings
   
   cd /staging/LAStools/LASzip
   mkdir build
