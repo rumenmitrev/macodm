@@ -122,18 +122,19 @@ WantedBy=multi-user.target
   sudo service clusterodm start
   sudo service micmac start
     echo "
+
 [Unit]
 Description=Start webodm Service
 
 [Service]
-Type=simple
+Type=oneshot
 PIDFile=/run/webodm.pid
 User=odm
 Group=odm
 WorkingDirectory=/webodm
 ExecStart=/webodm/webodm.sh --port 80 --detached --default-nodes 0 start
 ExecStop=/webodm/webodm.sh --port 80 --detached --default-nodes 0 stop
-Restart=always
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
@@ -151,5 +152,6 @@ WantedBy=multi-user.target
   sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   sudo rm -rf /code/SuperBuild/build/opencv /code/SuperBuild/download /code/SuperBuild/src/ceres /code/SuperBuild/src/mvstexturing /code/SuperBuild/src/opencv /code/SuperBuild/src/opengv /code/SuperBuild/src/pcl /code/SuperBuild/src/pdal
   
+  sudo chown -R odm /code /www /webodm /home/odm /clusterodm /staging /micmac /home/drnmppr-micmac  
   sudo reboot
 exit 0
