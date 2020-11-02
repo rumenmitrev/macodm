@@ -1,10 +1,12 @@
 #!/bin/bash
 
+  ## ensure 25 HDD
+
   CPUS=$(grep -c ^processor /proc/cpuinfo)
   
   sudo apt update
   sudo apt upgrade
-  sudo apt install -y qt5-default qttools5-dev-tools curl python-setuptools build-essential gcc g++ cmake binutils libproj-dev git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-pip python3-pip zip libpng-dev libfreetype6-dev python-pip
+  sudo apt install -y qt5-default qttools5-dev-tools curl python-setuptools build-essential gcc g++ cmake binutils libproj-dev git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely exiv2 imagemagick xmlstarlet libjpeg-progs python-pip python3-pip zip libpng-dev libfreetype6-dev python-pip pkg-config
   python3 -m pip install --upgrade pip
   cd ~
   sudo curl --silent --location https://deb.nodesource.com/setup_10.x | sudo bash -
@@ -15,7 +17,7 @@
 
  
   cd /
-  #sudo git clone https://github.com/OpenDroneMap/WebODM --config core.autocrlf=input --depth 1 webodm
+  sudo git clone https://github.com/OpenDroneMap/WebODM --config core.autocrlf=input --depth 1 webodm
   sudo git clone --depth 1 https://github.com/OpenDroneMap/OpenDroneMap.git code
   sudo git clone --depth 1 https://github.com/OpenDroneMap/node-OpenDroneMap.git www
   sudo git clone https://github.com/OpenDroneMap/ClusterODM clusterodm
@@ -27,12 +29,12 @@
   sudo git clone https://github.com/micmacIGN/micmac.git /home/drnmppr-micmac
   sudo git clone https://github.com/pierotofy/LAStools /staging/LAStools
   sudo git clone https://github.com/pierotofy/PotreeConverter /staging/PotreeConverter
-  sudo chown $(whoami) -R /www /code /clusterodm /staging /micmac /home/drnmppr-micmac /webodm
+  sudo chown $(whoami) -R /www /code /clusterodm /staging /micmac /home/drnmppr-micmac
   
   python3 -m pip install --user 'Cython>= 0.23.4' numpy 'scikit-image<0.15'  opencv-python rasterio geojson
   pip install --upgrade pip
   pip install --user pytz
-  python -m  pip install --user -r /code/requirements.txt
+  python3 -m  pip install --user -r /code/requirements.txt
   sudo bash /code/configure.sh install
 
   sudo ln -s /code/SuperBuild/install/bin/entwine /usr/bin/entwine
@@ -118,8 +120,33 @@ WantedBy=multi-user.target
   
   sudo service nodeodm start
   sudo service clusterodm start
-  #sudo service micmac start
-  sudo sed -i '$i'"$(echo '/webodm/webodm.sh --port 80 --detached --default-nodes 0 start')" /etc/rc.local
+  sudo service micmac start
+    echo "
+[Unit]
+Description=Start webodm Service
+
+[Service]
+Type=simple
+PIDFile=/run/webodm.pid
+User=odm
+Group=odm
+WorkingDirectory=/webodm
+ExecStart=/webodm/webodm.sh --port 80 --detached --default-nodes 0 start
+ExecStop=/webodm/webodm.sh --port 80 --detached --default-nodes 0 stop
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+" > /webodm/webodm.service
+
+   sudo systemctl enable  /webodm/webodm.service
+   sudo service webodm start
+
+  #sudo sed -i '$i'"$(echo '/webodm/webodm.sh --port 80 --detached --default-nodes 0 start')" /etc/rc.local
+  
+  
+  
   # clena
   sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   sudo rm -rf /code/SuperBuild/build/opencv /code/SuperBuild/download /code/SuperBuild/src/ceres /code/SuperBuild/src/mvstexturing /code/SuperBuild/src/opencv /code/SuperBuild/src/opengv /code/SuperBuild/src/pcl /code/SuperBuild/src/pdal
