@@ -167,6 +167,6 @@ make
 sudo make install
 
 echo "export PROJ_LIB=$HOME/.local/lib/python2.7/site-packages/pyproj/proj_dir/share/proj/" >> $HOME/.bashrc
-
+#                      "/usr/local/lib/python3.6/dist-packages/pyproj/proj_dir/share/proj/"
 sudo reboot
 exit 0
