@@ -166,5 +166,7 @@ cd gdal-3.0.4
 make
 sudo make install
 
+export PROJ_LIB=$HOME/.local/lib/python2.7/site-packages/pyproj/proj_dir/share/proj/
+
 sudo reboot
 exit 0
