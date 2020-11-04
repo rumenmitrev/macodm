@@ -38,7 +38,7 @@ cd /code
 sudo bash ./configure.sh install
 
 # some dependencies
-export PATH="$HOME/.local/bin:$PATH"
+sudo export PATH="$HOME/.local/bin:$PATH" >> /etc/environment
 pip install scikit-image --use-feature=2020-resolver
 pip install utm --use-feature=2020-resolver
 python -m  pip install --user utm
@@ -166,7 +166,7 @@ cd gdal-3.0.4
 make
 sudo make install
 
-export PROJ_LIB=$HOME/.local/lib/python2.7/site-packages/pyproj/proj_dir/share/proj/
+sudo export PROJ_LIB=$HOME/.local/lib/python2.7/site-packages/pyproj/proj_dir/share/proj/ >> /etc/environment
 
 sudo reboot
 exit 0
