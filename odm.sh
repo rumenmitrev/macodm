@@ -162,7 +162,7 @@ cd ~
 wget http://download.osgeo.org/gdal/gdal-3.0.4.tar.gz
 tar xvfz gdal-3.0.4.tar.gz
 cd gdal-3.0.4
-./configure --with-python
+./configure --with-python --with-proj
 make
 sudo make install
 
