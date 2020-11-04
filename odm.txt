@@ -39,6 +39,7 @@ pip install scikit-image --use-feature=2020-resolver
 pip install utm --use-feature=2020-resolver
 python -m  pip install --user utm
 python -m  pip install --user appsettings
+python -m  pip install --user pyproj
 
 
 sudo ln -s /code/SuperBuild/install/bin/entwine /usr/bin/entwine
