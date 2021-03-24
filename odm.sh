@@ -4,17 +4,17 @@
 
 CPUS=$(grep -c ^processor /proc/cpuinfo)
 
+sudo curl --silent --location https://deb.nodesource.com/setup_10.x | sudo bash -
 sudo apt install python-gdal
+sudo apt install -y nodejs
+
 sudo apt update
 sudo apt upgrade
-sudo curl --silent --location https://deb.nodesource.com/setup_10.x | sudo bash -
 
 sudo apt install -y curl python-setuptools build-essential gcc g++ cmake binutils \
-  git swapspace htop libboost-dev libboost-program-options-dev exiftool python-shapely \
-  exiv2 imagemagick xmlstarlet libjpeg-progs python-pip python3-pip zip libpng-dev \
-  libfreetype6-dev python-pip pkg-config qt5-default qttools5-dev-tools
-
-sudo apt install -y nodejs
+  git swapspace htop libboost-dev libboost-program-options-dev exiftool python3-shapely \
+  exiv2 imagemagick xmlstarlet libjpeg-progs python3-pip zip libpng-dev \
+  libfreetype6-dev pkg-config qt5-default qttools5-dev-tools
 
 # colne all needed repos
 cd /
@@ -38,11 +38,11 @@ cd /code
 sudo bash ./configure.sh install
 
 # some dependencies
-echo "export PATH="$HOME/.local/bin:$PATH"" >> $HOME/.bashrc
-pip install scikit-image --use-feature=2020-resolver
-pip install utm --use-feature=2020-resolver
-python -m  pip install --user utm
-python -m  pip install --user appsettings
+#echo "export PATH="$HOME/.local/bin:$PATH"" >> $HOME/.bashrc
+#pip install scikit-image --use-feature=2020-resolver
+#pip install utm --use-feature=2020-resolver
+#python -m  pip install --user utm
+#python -m  pip install --user appsettings
 
 
 # Links to entwine and pdal
@@ -113,7 +113,7 @@ cd ~
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo usermod -aG docker $(whoami)
-sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
